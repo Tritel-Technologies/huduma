@@ -133,7 +133,7 @@
             key2 = "client_action_multi" />
 
 
-		<record model="ir.ui.view" id="monthly_report_wizard">
+		<!-- <record model="ir.ui.view" id="monthly_report_wizard">
         	<field name = 'name'>Monthly Report</field>
 			<field name = 'model'>karibu.center.report.wizard</field>
 			<field name = 'arch' type = 'xml'>
@@ -147,7 +147,7 @@
 						</group>
 					</group>
 					<footer>
-                        <button name = 'action_send_for_confirmation' type = 'object' string = 'Send for Confirmation' class = 'oe_highlight'/> or
+                        <button name = 'action_send_for_confirmation' type = 'object' string = 'Print Excel' class = 'oe_highlight'/> or
                         <button special="cancel" string="Cancel"/>
                     </footer>
 				</form>
@@ -162,7 +162,7 @@
             target="new"
             key2="client_action_multi"/>
 
-        <menuitem name="Monthly Report" id="karibu_center_cases_monthly_reports_menu" action="launch_monthly_report_action_wizard" parent="huduma_cases_main_menu" sequence="90"/>
+        <menuitem name="Monthly Report" id="karibu_center_cases_monthly_reports_menu" action="launch_monthly_report_action_wizard" parent="huduma_cases_main_menu" sequence="90"/> -->
 
 	</data>
 </openerp>

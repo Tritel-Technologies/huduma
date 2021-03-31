@@ -24,6 +24,7 @@
                 'mail',
                 'contacts',
                 'portal',
+                'report_xlsx',
                 ],
 
     # always loaded
@@ -40,6 +41,7 @@
         'automation/automation.xml',
         'views/res_partner.xml',
         'data/default_data.xml',
+        'report/huduma_cases_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

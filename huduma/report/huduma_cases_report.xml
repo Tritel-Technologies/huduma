@@ -5,8 +5,8 @@
             model="huduma.case.header"
             string="Karibu Center Cases Report"
             report_type="xlsx"
-            name="karibu.center.cases.xlsx"
-            file="karibu.center.cases.xlsx"
+            name="monthly_report.xlsx"
+            file="monthly_report.xlsx"
             attachment_use="False"
         />
 
@@ -18,6 +18,7 @@
                         <group string = "Filters">
                             <group>
                                 <field name = 'start_date'/>
+                                <field name="department_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}"/>/>
                             </group>
                             <group>
                                 <field name = 'end_date'/>
@@ -34,13 +35,13 @@
 
         <act_window id = "launch_karibu_center_report_wizard"
                 name = "Karibu Center Report"
-                src_model = "huduma.case.header"
-                res_model = "karibu.center.report.wizard"
-                view_mode = "form"
-                target = "new"
-                key2 = "client_action_multi" />
+                src_model="huduma.case.header"
+                res_model="karibu.center.report.wizard"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi" />
 
-        <menuitem name = "Reports" id = 'karibu_center_reports_main_menu' parent = "huduma_main_menu" sequence = "50"/>
-        <menuitem name = "Reports" id = 'karibu_center_monthly_reports_menu' parent = "karibu_center_reports_main_menu" sequence = "10" action="launch_karibu_center_report_wizard"/>
+        <menuitem name="Reports" id='karibu_center_reports_main_menu' parent="huduma_main_menu" sequence="50"/>
+        <menuitem name = "Reports" id = 'karibu_center_monthly_reports_menu' parent = "karibu_center_reports_main_menu" sequence = "10" action="launch_karibu_center_report_wizard"/> 
 	</data>
 </openerp>
