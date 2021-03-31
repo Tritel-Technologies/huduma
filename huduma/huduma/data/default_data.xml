@@ -1,0 +1,35 @@
+<openerp>
+	<data noupdate="1">
+		<!-- Huduma Stages Default Records -->
+		<!-- <record model = 'huduma.stages' id = 'huduma_stage_new'>
+			<field name = 'name'>New</field>
+			<field name = 'sequence'>10</field>
+			<field name = 'state'>flow_start</field>
+			<field name = 'case_default'>True</field>
+		</record>
+
+		<record model = 'huduma.stages' id = 'huduma_stage_assigned'>
+			<field name = 'name'>Assigned</field>
+			<field name = 'sequence'>20</field>
+			<field name = 'state'>normal</field>
+		</record>
+
+		<record model = 'huduma.stages' id = 'huduma_stage_escalated'>
+			<field name = 'name'>Escalated</field>
+			<field name = 'sequence'>30</field>
+			<field name = 'state'>escalated</field>
+		</record>
+
+		<record model = 'huduma.stages' id = 'huduma_stage_confirmation'>
+			<field name = 'name'>Confirmation</field>
+			<field name = 'sequence'>40</field>
+			<field name = 'state'>confirm</field>
+		</record>
+
+		<record model = 'huduma.stages' id = 'huduma_stage_closed'>
+			<field name = 'name'>Closed</field>
+			<field name = 'sequence'>90</field>
+			<field name = 'state'>closed</field>
+		</record> -->
+	</data>
+</openerp>

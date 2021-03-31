@@ -1,0 +1,168 @@
+<openerp>
+	<data>
+		<record model = 'ir.ui.view' id = 'huduma_case_action_wizard'>
+			<field name = 'name'>Case Action</field>
+			<field name = 'model'>huduma.case.action</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<group>
+						<group>
+							<field name = 'name'/>
+							<field name = 'date'/>
+							<field name = 'stage_type'/>
+						</group>
+						<group>
+							<field name = 'comment'/>
+							<field name = 'user'/>
+							<field name = 'case_id'/> 
+						</group>
+					</group>
+					<footer>
+                        <button name = 'action_confirm' type = 'object' string = 'Confirm' class = 'oe_highlight'/> or
+                        <button special = "cancel" string = "Cancel"/>
+                    </footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window id = "launch_case_action_wizard"
+            name = "User Action"
+            src_model = "huduma.case.header"
+            res_model = "huduma.case.action"
+            view_mode = "form"
+            target = "new"
+            key2 = "client_action_multi" />
+
+
+        <record model = 'ir.ui.view' id = 'huduma_close_case_action_wizard'>
+			<field name = 'name'>Close Case Action</field>
+			<field name = 'model'>huduma.close.case.action</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<group>
+						<group>
+							<field name = 'case_id' readonly = '1' string = 'No.'/>
+							<field name = 'title' readonly = '1'/>
+							<field name = 'resolution_details'/>
+						</group>
+						<group>
+							<field name = 'date'/> 
+							<field name = 'state'/>
+						</group>
+					</group>
+					<footer>
+                        <button name = 'action_close' type = 'object' string = 'Confirm' class = 'oe_highlight'/> or
+                        <button special = "cancel" string = "Cancel"/>
+                    </footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window id = "launch_close_case_action_wizard"
+            name = "Close Case Action"
+            src_model = "huduma.case.header"
+            res_model = "huduma.close.case.action"
+            view_mode = "form"
+            target = "new"
+            key2 = "client_action_multi" />
+
+        <record model = 'ir.ui.view' id = 'huduma_reassign_case_action_wizard'>
+			<field name = 'name'>Close Case Action</field>
+			<field name = 'model'>huduma.reassign.case.action</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<group>
+						<group>
+							<field name = 'case_id' readonly = '1' string = 'No.'/>
+							<field name = 'title' readonly = '1'/>
+							<field name = 'reassignment_details'/>
+							<field name = 'assigned_to'/>
+							<field name = 'assigned_to_email'/>
+						</group>
+						<group>
+							<field name = 'date'/> 
+							<!-- <field name = 'state'/> -->
+						</group>
+					</group>
+					<footer>
+                        <button name = 'action_reassign' type = 'object' string = 'Re-Assign' class = 'oe_highlight'/> or
+                        <button special = "cancel" string = "Cancel"/>
+                    </footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window id = "launch_reassign_case_action_wizard"
+            name = "Re-Assign Case Action"
+            src_model = "huduma.case.header"
+            res_model = "huduma.reassign.case.action"
+            view_mode = "form"
+            target = "new"
+            key2 = "client_action_multi" />
+
+        <record model = 'ir.ui.view' id = 'huduma_confirm_case_action_wizard'>
+			<field name = 'name'>Send for Confirmation Action</field>
+			<field name = 'model'>huduma.confirmation.case.action</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<group>
+						<group>
+							<field name = 'case_id' readonly = '1' string = 'No.'/>
+							<field name = 'title' readonly = '1'/>
+							<field name = 'confirmation_comment'/>
+						</group>
+						<group>
+							<field name = 'date'/> 
+							<!-- <field name = 'state'/> -->
+						</group>
+					</group>
+					<footer>
+                        <button name = 'action_send_for_confirmation' type = 'object' string = 'Send for Confirmation' class = 'oe_highlight'/> or
+                        <button special = "cancel" string = "Cancel"/>
+                    </footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window id = "launch_sendforconfirmation_case_action_wizard"
+            name = "Send for Confirmation Action"
+            src_model = "huduma.case.header"
+            res_model = "huduma.confirmation.case.action"
+            view_mode = "form"
+            target = "new"
+            key2 = "client_action_multi" />
+
+
+		<record model="ir.ui.view" id="monthly_report_wizard">
+        	<field name = 'name'>Monthly Report</field>
+			<field name = 'model'>karibu.center.report.wizard</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<group>
+						<group>
+							<field name='start_date'/>
+						</group>
+						<group>
+							<field name='end_date'/> 
+						</group>
+					</group>
+					<footer>
+                        <button name = 'action_send_for_confirmation' type = 'object' string = 'Send for Confirmation' class = 'oe_highlight'/> or
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+				</form>
+			</field>
+        </record>
+
+        <act_window id = "launch_monthly_report_action_wizard"
+            name = "Monthly Report"
+            src_model="huduma.case.header"
+            res_model="karibu.center.report.wizard"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"/>
+
+        <menuitem name="Monthly Report" id="karibu_center_cases_monthly_reports_menu" action="launch_monthly_report_action_wizard" parent="huduma_cases_main_menu" sequence="90"/>
+
+	</data>
+</openerp>

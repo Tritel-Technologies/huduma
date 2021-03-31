@@ -1,0 +1,866 @@
+<openerp>
+	<data>
+		
+		<!--Menus start here-->
+		<record model = 'ir.actions.act_window' id = 'huduma_case_action'>
+			<field name = 'name'>Case</field>
+			<field name = 'res_model'>huduma.case.header</field>
+			<!-- <field name = "domain">[('department_id.responsible','=',uid)]</field>
+      		<field name = "filter" eval = "True"/> -->
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>kanban,tree,form,calendar</field>
+		</record>
+
+		<menuitem name = 'KenGen Karibu' id = 'huduma_main_menu' groups = "normal_user" sequence = '30'/>
+		<menuitem name = 'Cases' id = 'huduma_cases_main_menu' sequence = '10' parent = 'huduma_main_menu'/>
+		<menuitem name = 'Cases' id = 'huduma_cases' parent = 'huduma_cases_main_menu' action = 'huduma_case_action'  sequence = '10'/>
+
+		<record model = 'ir.actions.act_window' id = 'huduma_portal_case_action'>
+			<field name = 'name'>Portal Case</field>
+			<field name = 'res_model'>huduma.case.header</field>
+			<field name = "domain">[('assigned_to','=',uid)]</field>
+      		<field name = "filter" eval = "True"/>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>tree,kanban,form,calendar</field>
+		</record>
+
+		<menuitem name = 'Kengen Karibu' id = 'portal_huduma_cases_main_menu' sequence = '20' parent = 'portal.portal_menu'/>
+		<menuitem name = 'Cases' id = 'portal_huduma_cases' parent = 'portal_huduma_cases_main_menu' action = 'huduma_portal_case_action' sequence = '10'/>
+
+		<record model = 'ir.actions.act_window' id = 'huduma_stages_action'>
+			<field name = 'name'>Huduma Stages</field>
+			<field name = 'res_model'>huduma.stages</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>tree,form</field>
+		</record>
+
+		<menuitem name = 'Configuration' id = 'huduma_configuration_main_menu' parent = 'huduma_main_menu' sequence = '90'/>
+		<menuitem name = 'Stages' id = 'huduma_stages' parent = 'huduma_configuration_main_menu' action = 'huduma_stages_action' sequence = '10'/>
+
+		<record model = 'ir.actions.act_window' id = 'huduma_departments_action'>
+			<field name = 'name'>Divisions</field>
+			<field name = 'res_model'>huduma.department</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>kanban,tree,form</field>
+		</record>
+
+		<menuitem name = 'Divisions' id = 'huduma_departments' parent = 'huduma_cases_main_menu' action = 'huduma_departments_action' sequence = '5'/>
+
+		<record model = 'ir.actions.act_window' id = 'huduma_tags_action'>
+			<field name = 'name'>Tags</field>
+			<field name = 'res_model'>huduma.tags</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>tree,form</field>
+		</record>
+
+		<menuitem name = 'Tags' id = 'huduma_tags' parent = 'huduma_configuration_main_menu' action = 'huduma_tags_action' sequence = '30'/>
+
+		<record model = 'ir.actions.act_window' id = 'huduma_scheduled_calls_action'>
+			<field name = 'name'>Scheduled Calls</field>
+			<field name = 'res_model'>huduma.scheduled.calls</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>tree,form</field>
+		</record>
+
+		<record model = 'ir.actions.act_window' id = 'huduma_scheduled_meetings_action'>
+			<field name = 'name'>Scheduled Meetings</field>
+			<field name = 'res_model'>huduma.scheduled.meetings</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>calendar,tree,form</field>
+		</record>
+
+		<record model = 'ir.actions.act_window' id = 'huduma_setup_action'>
+			<field name = 'name'>Huduma Setup</field>
+			<field name = 'res_model'>huduma.setup</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>tree,form</field>
+		</record>
+
+		<menuitem name = 'General Setup' id = 'huduma_setup' parent = 'huduma_configuration_main_menu' action = 'huduma_setup_action' sequence = '90'/>
+
+		<record model = 'ir.actions.act_window' id = 'huduma_cases_graph_action'>
+			<field name = 'name'>Case Analysis</field>
+			<field name = 'res_model'>huduma.case.header</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>graph</field>
+		</record>
+
+		<menuitem name = 'Analysis' id = 'huduma_analysis_main_menu' parent = 'huduma_cases_main_menu' sequence = '90'/>
+		<menuitem name = 'Case Analysis' id = 'huduma_case_analysis' parent = 'huduma_analysis_main_menu' action = 'huduma_cases_graph_action' sequence = '10'/>
+
+		<record model = 'ir.actions.act_window' id = 'my_huduma_cases_action'>
+			<field name = 'name'>My Cases</field>
+			<field name = 'res_model'>huduma.case.header</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>kanban,tree,form,calendar</field>
+			<field name="context">{
+                    'search_default_my_huduma_cases_filter': 1
+                }
+            </field>
+		</record>
+
+		<menuitem name = 'My Cases' id = 'my_huduma_cases' parent = 'huduma_cases_main_menu' action = 'my_huduma_cases_action' sequence = '50'/>
+
+		<record model = 'ir.actions.act_window' id = 'my_huduma_meetings_action'>
+			<field name = 'name'>My Meetings</field>
+			<field name = 'res_model'>huduma.scheduled.meetings</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>calendar,tree,form</field>
+			<field name="context">{
+                    'search_default_my_huduma_meetings_filter': 1
+                }
+            </field>
+		</record>
+
+		<menuitem name = 'My Meetings' id = 'my_huduma_meetings' parent = 'huduma_cases_main_menu' action = 'my_huduma_meetings_action' sequence = '52'/>
+
+		<record model = 'ir.actions.act_window' id = 'huduma_process_map_action'>
+			<field name = 'name'>Process Maps</field>
+			<field name = 'res_model'>huduma.process.map</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>tree,form</field>
+		</record>
+
+		<menuitem name = 'Process Maps' id = 'huduma_process_maps' parent = 'huduma_configuration_main_menu' action = 'huduma_process_map_action' sequence = '30'/>
+
+		<record model = 'ir.actions.act_window' id = 'karibu_types_action'>
+			<field name = 'name'>Karibu Center Case Types</field>
+			<field name = 'res_model'>karibu.type</field>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>tree,form</field>
+		</record>
+
+		<menuitem name = 'Case Types' id = 'karibu_center_case_types' action = 'karibu_types_action' parent = 'huduma_configuration_main_menu'/>
+
+		<record model = 'ir.actions.act_window' id = 'karibu_center_customers_action'>
+			<field name = 'name'>Karibu Centre Customers</field>
+			<field name = 'res_model'>res.partner</field>
+			<field name = 'domain'>[('customer','=',True)]</field> 
+			<field name = 'filter' eval = 'True'/>
+			<field name = 'view_type'>form</field>
+			<field name = 'view_mode'>tree,form</field>
+		</record>
+
+		<menuitem name = 'Karibu Centre Customers' id = 'karibu_center_customers' action = 'karibu_center_customers_action' parent = 'huduma_configuration_main_menu' sequence = '15'/> 
+
+
+<!--*******************************************************************************************************-->
+
+		<!--Views-->
+		<record model = 'ir.ui.view' id = 'huduma_case_form'>
+			<field name = 'name'>Case</field>
+			<field name = 'model'>huduma.case.header</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<header>
+						<!-- <button name = 'mark_as_open' type = 'object' string = 'Reset to Draft'/> -->
+						<!-- <button name = 'mark_as_escalated' type = 'object' string = 'Escalate' class = 'oe_highlight'/> -->
+						<!-- <button name = 'mark_as_closed' type = 'object' string = 'Mark as Closed' class = 'oe_highlight'/> -->
+						<button name = 'assign_case' type = 'workflow' class = 'oe_highlight'  string = 'Confirm' states = 'flow_start'/>
+						<button name = '%(launch_close_case_action_wizard)d' type = 'action' context = "{'default_case_id':active_id,'default_title':title}" string = 'Close Case' class = 'oe_highlight' states = 'confirm'/>
+						<button name = '%(launch_reassign_case_action_wizard)d' type = 'action' context = "{'default_case_id':active_id,'default_title':title}" string = 'Re-Assign Case' class = 'oe_highlight' states = 'escalated,normal'/>
+						<button name = '%(launch_sendforconfirmation_case_action_wizard)d' type = 'action' context = "{'default_case_id':active_id,'default_title':title}" string = 'Send for Confirmation' class = 'oe_highlight' states = 'normal,escalated'/>
+						<!-- <button name = 'match_all_stages_with_state' type = 'object' string = 'Organize Cases'/> -->
+						<button name = 'manual_escalate' type = 'object' string = 'Escalate' states = 'normal'/>
+						<!-- <button name = '%(launch_case_action_wizard)d' type = 'action' context = "{'default_case_id':id}" string = 'Proceed' class = 'oe_highlight'/> -->
+						<!-- <button name = 'process_process_map' type = 'object' string = 'Process Map' class = 'oe_highlight'/> -->
+						<!-- <button name = 'worker' type = 'object' string = 'Test'/> -->
+						<field name = 'state' widget = 'statusbar'/>
+						
+					</header>
+					<sheet>
+						<div class="oe_right oe_button_box">
+					        <button class="oe_inline oe_stat_button" type="action" name="%(huduma_scheduled_calls_action)d" icon="fa-phone" context="{'default_case_id': active_id, 'search_default_case_id': active_id}">
+					            <div>Schedule/Log<br/>Calls</div>
+					        </button>
+					        <button class="oe_inline oe_stat_button" type="action" context="{'default_case_id': active_id, 'search_default_case_id': active_id}" name="%(huduma_scheduled_meetings_action)d" icon="fa-calendar">
+					            <field string="Meetings" name="meeting_count" widget="statinfo"/>
+					        </button>
+					    </div>
+
+				    	<div class="oe_title">
+							<h3>
+								<label for = 'case_type' class = 'oe_inline oe_edit_only'/>
+								<field name = 'case_type' class = 'oe_inline oe_edit_only' widget='selection'/>
+							</h3>
+							<h1>
+								<label for = 'title' class = 'oe_edit_only'/>
+								<field name = 'name' class = 'oe_inline' invisible = 'True'/> 
+								<field name = 'title' class = 'oe_inline'/>
+							</h1>
+						</div>
+
+						<group>
+							<group>
+								<field name = 'department_id'/> 
+								<field name = 'assigned_to'/>
+								<field name = 'assigned_to_email'/>
+								<field name = 'email_cc' widget = 'many2many_tags'/>
+								<field name = 'email_cc_emails' invisible = '1'/>
+								<field name = 'customer'/>
+								<!-- <field name = 'process_map_id'/> -->
+								<field name = 'tag_ids' widget="many2many_tags"
+    							options="{'no_create_edit': True}"/>		
+								<field name = 'priority'/>
+								<field name = 'resolution_status'/>
+								<field name = 'color' invisible = '1'/>
+								<field name = 'administrator' invisible = '1' />
+								<field name = 'quarter'/>
+								<field name = 'currently_with'/>
+							</group>
+						</group>
+						<notebook>
+							<page string = 'Case Information'>
+								<group>
+									<field name = 'case_information'/>
+									<field name = 'attachments' widget="many2many_binary" string="Attach file(s)"/>
+									<field name = 'case_resolution'/>
+								</group>
+							</page>
+							<page string = 'Process Map'>
+								<field name = 'process_map_progress_ids'>
+									<tree colors="green:state=='done';blue:state=='pending';black:state=='open'">
+										<field name = 'sequence'/>
+										<field name = 'current_action'/>
+										<field name = 'state'/>
+										<field name = 'name'/>
+										<field name = 'stage_type'/>
+										<field name = 'next_action_accept'/>
+										<field name = 'next_action_reject'/>
+										<field name = 'date'/>
+										<field name = 'days_to_resolution'/>
+									</tree>
+								</field>
+							</page>
+							<page string = 'Comments'>
+								<field name = 'comment_ids'>
+									<tree default_order='date'>
+										<field name = 'date'/>
+										<field name = 'user_id'/>
+										<field name = 'comment'/>
+										<!-- <field name = 'email'/> -->
+									</tree>
+								</field>
+							</page>
+							<page string = 'Other Information'>
+								<group>
+									<group string = "General">
+										<field name = 'stage_id'/>
+										<field name = 'opened_by'/>
+										<field name = 'related_cases'/>
+									</group>
+									<group string = "Important Dates">
+										<field name = 'opened_date'/>
+										<field name = 'due_date'/>
+										<field name = 'days_lapsed'/>
+										<field name = 'resolved_date'/>
+									</group>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+					<div class = 'oe_chatter'>
+						<field name = 'message_follower_ids' widget = 'mail_followers'/>
+						<field name = 'message_ids' widget = 'mail_thread'/>
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_case_kanban'>
+			<field name = 'name'>Cases</field>
+			<field name = 'model'>huduma.case.header</field>
+			<field name = 'arch' type = 'xml'>
+				<kanban default_group_by = 'stage_id'>
+					<field name = 'color'/>
+					<field name = 'kanban_state'/>
+					<field name = 'tag_ids'/>
+					<field name = 'priority'/>
+					<field name = 'days_lapsed'/>
+					<templates>
+						<t t-name = 'kanban-box'>
+							<div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+								<div class="oe_dropdown_toggle oe_dropdown_kanban">
+									<span class="oe_e">
+										í
+									</span>
+									<ul class="oe_dropdown_menu">
+										<t t-if="widget.view.is_action_enabled('edit')">
+											<li>
+												<a data-type="edit" href="#" class=" oe_kanban_action oe_kanban_action_a">
+													Edit...
+												</a>
+											</li>
+										</t>
+										<t t-if="widget.view.is_action_enabled('delete')">
+											<li>
+												<a data-type="delete" href="#" class=" oe_kanban_action oe_kanban_action_a">
+													Delete
+												</a>
+											</li>
+										</t>
+										<li>
+											<ul class="oe_kanban_colorpicker" data-field="color"/>
+										</li>
+									</ul>
+								</div>
+
+								<div t-attf-class="oe_kanban_content">
+									<div>
+										<b>
+											<field name = 'name'/>
+											<br/>
+											<field name = 'title'/>
+										</b>
+										<br/>
+										Assigned To:
+										<field name = 'assigned_to'/>
+										<br/>
+										Due Date
+										<field name = 'due_date'/>
+										<br/>
+										<b>
+											Days Lapsed:
+											<field name = 'days_lapsed'/>
+										</b>
+									</div>
+
+									<div class="oe_kanban_footer_left" style="margin-top:5px;">
+									<!--<t t-raw="record.message_summary.raw_value"/>-->
+										<div name="tag_ids" modifiers="{}" class=" oe_form_field oe_tags"/>
+									</div>
+
+									<div class="oe_kanban_bottom_right">
+										
+										<img t-att-src="kanban_image('res.users', 'image_small', record.assigned_to.raw_value)" t-att-title="record.assigned_to.value" width="24" height="24" class="oe_kanban_avatar pull-right"/>
+										<div class="pull-left">
+											<field name="kanban_state" widget="kanban_state_selection"/>
+											<field name="priority" widget="priority"/>
+										</div>
+									</div>
+								</div>
+								<div class="oe_clear"/>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_case_tree'>
+			<field name = 'name'>Case</field>
+			<field name = 'model'>huduma.case.header</field>
+			<field name = 'arch' type = 'xml'>
+				<tree>
+					<field name = 'name'/>
+					<field name = 'opened_by'/>
+					<field name = 'assigned_to'/>
+					<field name = 'customer'/>
+					<field name = 'title'/>
+					<field name = 'resolved_date'/>
+					<field name = 'department_id'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_case_calendar'>
+			<field name = 'name'>Case Calendar</field>
+			<field name = 'model'>huduma.case.header</field>
+			<field name = 'arch' type = 'xml'>
+				<calendar string = 'Cases Calendar' date_start = 'opened_date' color = 'name'>
+					<field name = 'title'/>
+					<field name = 'assigned_to'/>
+				</calendar>	
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_case_search'>
+			<field name = 'name'>Case Search</field>
+			<field name = 'model'>huduma.case.header</field>
+			<field name = 'arch' type = 'xml'>
+				<search>
+					<field name = 'name'/>
+					<field name = 'title'/>
+					<field name = 'department_id'/>
+					<field name="case_type" string="Nature"/>
+					<field name = 'tag_ids' string = 'Tag'/>
+					<filter string="My" domain="[('assigned_to','=',uid)]" name="my_huduma_cases_filter"/>
+
+					<filter icon="terp-go-month" string="Opened this Month" name="opened_this_month" domain="[('opened_date','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),('opened_date','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]" help="Current Month"/>
+					
+					<filter string="Opened Last Month" name="opened_last_month" domain="[('opened_date','&gt;=',(context_today()-relativedelta(months=1)).strftime('%Y-%m-01')),('opened_date','&lt;',time.strftime('%Y-%m-01'))]"/>
+
+					<filter icon="terp-go-month" string="Resolved this Month" name="resolved_this_month" domain="[('resolved_date','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),('resolved_date','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]" help="Current Month"/>
+
+					<filter string="Resolved Last Month" name="resolved_last_month" domain="[('resolved_date','&gt;=',(context_today()-relativedelta(months=1)).strftime('%Y-%m-01')),('resolved_date','&lt;',time.strftime('%Y-%m-01'))]"/>
+
+					<filter string="Q1" domain="[('quarter','=','Q1')]" name="quarter_1_filter"/>
+					<filter string="Q2" domain="[('quarter','=','Q2')]" name="quarter_2_filter"/>
+					<filter string="Q3" domain="[('quarter','=','Q3')]" name="quarter_3_filter"/>
+					<filter string="Q4" domain="[('quarter','=','Q4')]" name="quarter_4_filter"/>
+					
+					<filter  icon="terp-go-month" string="Last Year"
+            		domain="[('opened_date', '&gt;=' ,(context_today()-relativedelta(years=1)).strftime('%Y-01-01')), ('opened_date','&lt;=',time.strftime('%Y-01-01'))]" help="Last year"/>
+            		
+            		<filter icon="terp-go-year" string="This Year" domain="[('opened_date','&lt;=', time.strftime('%Y-%m-%d')),('opened_date','&gt;=',time.strftime('%Y-01-01'))]" help="Current Year"/>
+
+            		<filter string="Resolved" domain="[('resolution_status','=','resolved')]" name="case_resolved_filter"/>
+
+            		<filter string="Unresolved" domain="[('resolution_status','=','unresolved')]" name="case_unresolved_filter"/>
+
+            		<filter string="Open" domain="[('state','in',['flow_start','normal','escalated','confirm'])]" name="case_open_filter"/>
+
+					<group expand="1" string="Group By">
+						<filter name="groupby_department" context="{'group_by':'department_id'}" string="Department"/>
+						<filter name="groupby_assigned_to" context="{'group_by':'assigned_to'}" string="Assigned To"/>
+						<filter name="groupby_assigned_to_email" context="{'group_by':'assigned_to_email'}" string="Assigned To E-mail"/>
+						<filter name="groupby_opened_by" context="{'group_by':'opened_by'}" string="Opened By"/>
+						<!-- <filter name="groupby_tag_ids" context="{'group_by':'tag_ids'}" string="Tags"/> -->
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_cases_graph'>
+			<field name = 'name'>Cases Graphs</field>
+			<field name = 'model'>huduma.case.header</field>
+			<field name = 'arch' type = 'xml'>
+				<graph string = 'Case Analysis'>
+					<field name="opened_date" type='row'/>
+                    <field name='department_id' type='row'/>
+                    <field name="days_lapsed" type="measure"/>
+				</graph>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_stages_form'>
+			<field name = 'name'>Stages</field>
+			<field name = 'model'>huduma.stages</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<group>
+						<group>
+							<field name = 'name'/>
+							<field name = 'case_default'/>
+							<field name = 'fold'/>
+						</group>
+						<group>
+							<field name = 'sequence'/>
+							<field name = 'final_stage'/>
+							<field name = 'final_stage_status'/>
+							<field name = 'state'/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_stages_tree'>
+			<field name = 'name'>Huduma Stages</field>
+			<field name = 'model'>huduma.stages</field>
+			<field name = 'arch' type = 'xml'>
+				<tree default_order='sequence'>
+					<field name = 'name'/>
+					<field name = 'sequence'/>
+					<field name = 'case_default'/>
+					<field name = 'final_stage'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_departments_form'>
+			<field name = 'name'>Departments</field>
+			<field name = 'model'>huduma.department</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<header>
+						
+					</header>
+					<sheet>
+						<div class="oe_right oe_button_box" name="buttons">
+	                         <button class="oe_inline oe_stat_button" type="action" 
+	                            name="%(huduma_case_action)d" context="{'default_department_id': active_id, 'search_default_department_id': active_id}" icon="fa-tasks">
+	                            <field string="Tasks" name="case_count" widget="statinfo"/>
+	                        </button>
+                    	</div>
+						<group>
+							<group>
+								<field name = 'name'/>
+								<field name="description" placeholder="Add a description..."/>
+							</group>
+							<group>
+								<field name = 'responsible'/>
+							</group>
+						</group>
+						<notebook>
+							<page string = 'Team'>
+								<field colspan = '4' name = 'members' widget = 'many2many_kanban'>
+									<kanban quick_create="false" create="true" delete="true">
+										<field name = 'name'/>
+										<templates>
+											<t t-name="kanban-box">
+												<div style="position: relative">
+							                        <a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+							                        <div class="oe_module_vignette">
+							                            <img t-att-src="kanban_image('res.users', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/>
+							                            <div class="oe_module_desc">
+							                                <field name="name"/>
+							                            </div>
+						                        	</div>
+						                    	</div>
+											</t>
+										</templates>
+									</kanban>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+					
+				</form>
+			</field>
+		</record>
+		
+		<record model = 'ir.ui.view' id = 'huduma_departments_kanban'> 
+			<field name = 'name'>Departments</field>
+			<field name = 'model'>huduma.department</field>
+			<field name = 'arch' type = 'xml'>
+				<kanban>
+					<field name="color"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_project oe_kanban_global_click">
+								<div class="oe_dropdown_toggle oe_dropdown_kanban">
+									<span class="oe_e">
+										í
+									</span>
+									<ul class="oe_dropdown_menu">
+										<t t-if="widget.view.is_action_enabled('edit')">
+											<li>
+												<a data-type="edit" href="#" class=" oe_kanban_action oe_kanban_action_a">
+													Edit
+												</a>
+											</li>
+										</t>
+										<t t-if="widget.view.is_action_enabled('delete')">
+											<li>
+												<a data-type="delete" href="#" class=" oe_kanban_action oe_kanban_action_a">
+													Delete
+												</a>
+											</li>
+										</t>
+										<li>
+											<ul class="oe_kanban_colorpicker" data-field="color"/>
+										</li>
+									</ul>
+								</div>
+								<div class="oe_kanban_content">
+
+									<h4 class="text-center">
+										<strong>
+											<field name = 'name'/>
+										</strong>
+									</h4>
+									
+									<div class="oe_kanban_project_list">
+										<a name="%(huduma_case_action)d" type="action" style="margin-right: 10px">
+											<field name = 'case_count'/>
+											 Cases
+										</a>
+									</div>
+									<!-- 
+									<div class="oe_kanban_project_avatars">
+										<t t-foreach="record.members.raw_value.slice(0,11)" t-as="member">
+											<img t-att-src="kanban_image('res.users', 'image_small', member)" t-att-data-member_id="member"/>
+										</t>
+									</div>
+									 -->
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+		
+		<record model = 'ir.ui.view' id = 'huduma_departments_tree'>
+			<field name = 'name'>Departments</field>
+			<field name = 'model'>huduma.department</field>
+			<field name = 'arch' type = 'xml'>
+				<tree>
+					<field name = 'name'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_tags_form'>
+			<field name = 'name'>Tags</field>
+			<field name = 'model'>huduma.tags</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<group>
+						<group>
+							<field name = 'name'/>
+							<field name = 'department_id'/>
+						</group>
+						<group>
+							
+						</group>
+					</group>
+					<field name="description" placeholder="Add a description..."/>
+				</form>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_tags_tree'>
+			<field name = 'name'>Tags</field>
+			<field name = 'model'>huduma.tags</field>
+			<field name = 'arch' type = 'xml'>
+				<tree>
+					<field name = 'name'/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record model = 'ir.ui.view' id = 'huduma_scheduled_calls_form'>
+			<field name = 'name'>Scheduled Calls</field>
+			<field name = 'model'>huduma.scheduled.calls</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<header>
+						
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name = 'date'/>
+								<field name = 'customer'/>
+								<field name = 'responsible'/>
+							</group>
+							<group>
+								<field name = 'agenda'/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_scheduled_calls_tree'>
+			<field name = 'name'>Scheduled Calls</field>
+			<field name = 'model'>huduma.scheduled.calls</field>
+			<field name = 'arch' type = 'xml'>
+				<tree>
+					<field name = 'date'/>
+					<field name = 'customer'/>
+					<field name = 'responsible'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_scheduled_calls_search'>
+			<field name = 'name'>Scheduled Calls Search</field>
+			<field name = 'model'>huduma.scheduled.calls</field>
+			<field name = 'arch' type = 'xml'>
+				<search>
+					<field name = 'case_id'/>
+				</search>
+			</field>
+		</record>
+		
+		<record model = 'ir.ui.view' id = 'huduma_scheduled_meetings_form'>
+			<field name = 'name'>Scheduled Meetings</field>
+			<field name = 'model'>huduma.scheduled.meetings</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<header>
+						
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name = 'name'/>
+								<field name = 'date'/>
+								<field name = 'responsible'/>
+								<field name = 'customer'/>
+							</group>
+							<group>
+								<field name = 'agenda'/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_scheduled_meetings_tree'>
+			<field name = 'name'>Schedule Meetings</field>
+			<field name = 'model'>huduma.scheduled.meetings</field>
+			<field name = 'arch' type = 'xml'>
+				<tree>
+					<field name = 'name'/>
+					<field name = 'date'/>
+					<field name = 'responsible'/>
+					<field name = 'customer'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_scheduled_meetings_calendar'>
+			<field name = 'name'>Scheduled Meetings</field>
+			<field name = 'model'>huduma.scheduled.meetings</field>
+			<field name = 'arch' type = 'xml'>
+				<calendar string = 'Meetings Calendar' date_start = 'date' color = 'responsible'>
+					<field name = 'name'/>
+				</calendar>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_scheduled_meetings_search'>
+			<field name = 'name'>Scheduled Meetings Search</field>
+			<field name = 'model'>huduma.scheduled.meetings</field>
+			<field name = 'arch' type = 'xml'>
+				<search>
+					<field name = 'case_id'/>
+					<filter string="My" domain="[('responsible','=',uid)]" name="my_huduma_meetings_filter"/>
+				</search>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_setup_form'>
+			<field name = 'name'>Huduma Setup</field>
+			<field name = 'model'>huduma.setup</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<group>
+						<group>
+							<field name = 'name'/>
+							<field name = 'huduma_admin_account'/>
+						</group>
+						<group></group>
+					</group>
+					<notebook>
+						<page string = 'Numbering'>
+							<group>
+								<group>
+									<field name = 'huduma_case_nos'/>
+								</group>
+								<group>
+									
+								</group>
+							</group>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_setup_tree'>
+			<field name = 'name'>Setup</field>
+			<field name = 'model'>huduma.setup</field>
+			<field name = 'arch' type = 'xml'>
+				<tree>
+					<field name = 'name'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_process_map_form'>
+			<field name = 'name'>Process Map</field>
+			<field name = 'model'>huduma.process.map</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name = 'name'/>
+								<field name = 'description'/>
+							</group>
+							<group>
+								<field name = 'process_map_type'/>
+								<field name = 'sla'/>
+							</group>
+						</group>
+						<notebook>
+							<page string = 'Process Map Stages'>
+								<field name = 'process_map_stage_ids'>
+									<tree>
+										<field name = 'sequence' widget = 'handle'/>
+										<field name = 'name'/>
+										<field name = 'stage_type'/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_process_map_tree'>
+			<field name = 'name'>Process Maps</field>
+			<field name = 'model'>huduma.process.map</field>
+			<field name = 'arch' type = 'xml'>
+				<tree>
+					<field name = 'name'/>
+					<field name = 'description'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'huduma_process_map_stage_form'>
+			<field name = 'name'>Process Map Stage</field>
+			<field name = 'model'>huduma.process.map.stages</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<sheet>
+						<group>
+							<group string = 'General'>
+								<field name = 'name'/>
+								<field name = 'stage_type'/>
+							</group>
+							<group string = 'Next Actions'>
+								<field name = 'next_action_accept'/>
+								<field name = 'next_action_reject'/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'kengen_karibu_case_types_form'>
+			<field name = 'name'>Karibu Center Case Types</field>
+			<field name = 'model'>karibu.type</field>
+			<field name = 'arch' type = 'xml'>
+				<form>
+					<header></header>
+					<sheet>
+						<group>
+							<field name = 'department_id'/>
+							<field name = 'name'/>
+							<field name = 'description'/>
+							<field name = 'default_assigned_to'/>
+							<field name = 'default_assigned_to_email'/>
+							<field name = 'default_email_cc' widget = 'many2many_tags'/>
+							<field name = 'default_case_information'/>
+							<field name = 'default_case_resolution'/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model = 'ir.ui.view' id = 'kengen_karibu_case_types_tree'>
+			<field name = 'name'>Karibu Center Case Types</field>
+			<field name = 'model'>karibu.type</field>
+			<field name = 'arch' type = 'xml'>
+				<tree>
+					<field name = 'department_id'/>
+					<field name = 'name'/>
+				</tree>
+			</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+huduma_portal_user,Huduma Portal User,model_huduma_case_header,huduma.portal_user,1,1,0,0
+huduma_normal_user,Huduma Normal User,model_huduma_case_header,huduma.normal_user,1,1,1,0
