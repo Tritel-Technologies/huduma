@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e -x
+for path in parts/*; do
+  if [ ! -d "$path" ]; then
+    continue
+  fi
+  git -C $path reset --merge
+  git -C $path clean -dfx
+done
+bin/buildout -c local.cfg
+
