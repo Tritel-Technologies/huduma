@@ -1,1 +1,15 @@
-../../waftlib/templates/8.0/addons.yaml
+---
+odoo/addons:
+    - "*"
+
+odoo/openerp/addons:
+    - "*"
+
+Tritel-Technologies/huduma:
+    - "*"
+
+OCA/reporting-engine:
+    - "*"
+
+# OCA/web:
+#     - "*"
