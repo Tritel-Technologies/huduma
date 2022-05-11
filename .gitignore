@@ -27,3 +27,4 @@ odoo-service
 run
 shell
 upgrade
+.idea/
