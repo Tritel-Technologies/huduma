@@ -11,7 +11,7 @@
 			<field name = 'view_mode'>kanban,tree,form,calendar</field>
 		</record>
 
-		<menuitem name = 'KenGen Karibu' id = 'huduma_main_menu' groups = "normal_user" sequence = '30'/>
+		<menuitem name = 'Community Complaints' id = 'huduma_main_menu' groups = "normal_user" sequence = '30'/>
 		<menuitem name = 'Cases' id = 'huduma_cases_main_menu' sequence = '10' parent = 'huduma_main_menu'/>
 		<menuitem name = 'Cases' id = 'huduma_cases' parent = 'huduma_cases_main_menu' action = 'huduma_case_action'  sequence = '10'/>
 
