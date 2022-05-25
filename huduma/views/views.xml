@@ -28,7 +28,7 @@
 		<menuitem name = 'Cases' id = 'portal_huduma_cases' parent = 'portal_huduma_cases_main_menu' action = 'huduma_portal_case_action' sequence = '10'/>
 
 		<record model = 'ir.actions.act_window' id = 'huduma_stages_action'>
-			<field name = 'name'>Huduma Stages</field>
+			<field name = 'name'>Community Complaints Stages</field>
 			<field name = 'res_model'>huduma.stages</field>
 			<field name = 'view_type'>form</field>
 			<field name = 'view_mode'>tree,form</field>
@@ -70,7 +70,7 @@
 		</record>
 
 		<record model = 'ir.actions.act_window' id = 'huduma_setup_action'>
-			<field name = 'name'>Huduma Setup</field>
+			<field name = 'name'>Community Complaints Setup</field>
 			<field name = 'res_model'>huduma.setup</field>
 			<field name = 'view_type'>form</field>
 			<field name = 'view_mode'>tree,form</field>
@@ -124,7 +124,7 @@
 		<menuitem name = 'Process Maps' id = 'huduma_process_maps' parent = 'huduma_configuration_main_menu' action = 'huduma_process_map_action' sequence = '30'/>
 
 		<record model = 'ir.actions.act_window' id = 'karibu_types_action'>
-			<field name = 'name'>Karibu Center Case Types</field>
+			<field name = 'name'>Complaint Types</field>
 			<field name = 'res_model'>karibu.type</field>
 			<field name = 'view_type'>form</field>
 			<field name = 'view_mode'>tree,form</field>
@@ -133,7 +133,7 @@
 		<menuitem name = 'Case Types' id = 'karibu_center_case_types' action = 'karibu_types_action' parent = 'huduma_configuration_main_menu'/>
 
 		<record model = 'ir.actions.act_window' id = 'karibu_center_customers_action'>
-			<field name = 'name'>Karibu Centre Customers</field>
+			<field name = 'name'>Community Members</field>
 			<field name = 'res_model'>res.partner</field>
 			<field name = 'domain'>[('customer','=',True)]</field> 
 			<field name = 'filter' eval = 'True'/>
@@ -141,7 +141,7 @@
 			<field name = 'view_mode'>tree,form</field>
 		</record>
 
-		<menuitem name = 'Karibu Centre Customers' id = 'karibu_center_customers' action = 'karibu_center_customers_action' parent = 'huduma_configuration_main_menu' sequence = '15'/> 
+		<menuitem name = 'Community Members' id = 'karibu_center_customers' action = 'karibu_center_customers_action' parent = 'huduma_configuration_main_menu' sequence = '15'/> 
 
 
 <!--*******************************************************************************************************-->
@@ -456,7 +456,7 @@
 		</record>
 
 		<record model = 'ir.ui.view' id = 'huduma_stages_tree'>
-			<field name = 'name'>Huduma Stages</field>
+			<field name = 'name'>Community Complaints Stages</field>
 			<field name = 'model'>huduma.stages</field>
 			<field name = 'arch' type = 'xml'>
 				<tree default_order='sequence'>
@@ -830,7 +830,7 @@
 		</record>
 
 		<record model = 'ir.ui.view' id = 'kengen_karibu_case_types_form'>
-			<field name = 'name'>Karibu Center Case Types</field>
+			<field name = 'name'>Complaint Types</field>
 			<field name = 'model'>karibu.type</field>
 			<field name = 'arch' type = 'xml'>
 				<form>
@@ -852,7 +852,7 @@
 		</record>
 
 		<record model = 'ir.ui.view' id = 'kengen_karibu_case_types_tree'>
-			<field name = 'name'>Karibu Center Case Types</field>
+			<field name = 'name'>Complaint Types</field>
 			<field name = 'model'>karibu.type</field>
 			<field name = 'arch' type = 'xml'>
 				<tree>
