@@ -1,7 +1,7 @@
 <openerp>
 	<data noupdate="1">
 		<!-- Huduma Stages Default Records -->
-		<!-- <record model = 'huduma.stages' id = 'huduma_stage_new'>
+		<record model = 'huduma.stages' id = 'huduma_stage_new'>
 			<field name = 'name'>New</field>
 			<field name = 'sequence'>10</field>
 			<field name = 'state'>flow_start</field>
@@ -30,6 +30,6 @@
 			<field name = 'name'>Closed</field>
 			<field name = 'sequence'>90</field>
 			<field name = 'state'>closed</field>
-		</record> -->
+		</record>
 	</data>
 </openerp>

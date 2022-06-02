@@ -1,3 +1,28 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-huduma_portal_user,Huduma Portal User,model_huduma_case_header,huduma.portal_user,1,1,0,0
-huduma_normal_user,Huduma Normal User,model_huduma_case_header,huduma.normal_user,1,1,1,0
+huduma_stages_portal_user,Huduma Stages Portal User,model_huduma_stages,huduma.portal_user,1,1,0,0
+huduma_stages_normal_user,Huduma Stages Normal User,model_huduma_stages,huduma.normal_user,1,1,0,0
+huduma_stages_administrator,Huduma Stages Administrator,model_huduma_stages,huduma.huduma_administrator,1,1,1,1
+huduma_case_portal_user,Huduma Case Portal User,model_huduma_case_header,huduma.portal_user,1,1,0,0
+huduma_case_normal_user,Huduma Case Normal User,model_huduma_case_header,huduma.normal_user,1,1,1,0
+huduma_case_administrator,Huduma Case Administrator,model_huduma_case_header,huduma.huduma_administrator,1,1,1,1
+huduma_karibu_type_portal_user,Huduma Karibu Type Portal User,model_karibu_type,huduma.portal_user,1,1,0,0
+huduma_karibu_type_normal_user,Huduma Karibu Type Normal User,model_karibu_type,huduma.normal_user,1,1,1,0
+huduma_karibu_type_administrator,Huduma Karibu Type Administrator,model_karibu_type,huduma.huduma_administrator,1,1,1,1
+huduma_department_portal_user,Huduma Department Portal User,model_huduma_department,huduma.portal_user,1,1,0,0
+huduma_department_normal_user,Huduma Department Normal User,model_huduma_department,huduma.normal_user,1,1,1,0
+huduma_department_administrator,Huduma Department Administrator,model_huduma_department,huduma.huduma_administrator,1,1,1,1
+huduma_email_cc_portal_user,Huduma Email cc Portal User,model_huduma_case_email_cc,huduma.portal_user,1,1,0,0
+huduma_email_cc_normal_user,Huduma Email cc Normal User,model_huduma_case_email_cc,huduma.normal_user,1,1,1,0
+huduma_email_cc_administrator,Huduma Email cc Administrator,model_huduma_case_email_cc,huduma.huduma_administrator,1,1,1,1
+huduma_setup_portal_user,Huduma Setup Portal User,model_huduma_setup,huduma.portal_user,1,0,0,0
+huduma_setup_normal_user,Huduma Setup Normal User,model_huduma_setup,huduma.normal_user,1,0,0,0
+huduma_setup_administrator,Huduma Setup Administrator,model_huduma_setup,huduma.huduma_administrator,1,1,1,1
+huduma_case_comments_portal_user,Huduma Case Comments Portal User,model_huduma_case_comments,huduma.portal_user,1,1,1,0
+huduma_case_comments_normal_user,Huduma Case Comments Normal User,model_huduma_case_comments,huduma.normal_user,1,1,1,0
+huduma_case_comments_administrator,Huduma Case Comments Administrator,model_huduma_case_comments,huduma.huduma_administrator,1,1,1,1
+huduma_scheduled_meetings_portal_user,Huduma Scheduled Meetings Portal User,model_huduma_scheduled_meetings,huduma.portal_user,1,1,0,0
+huduma_scheduled_meetings_normal_user,Huduma Scheduled Meetings Normal User,model_huduma_scheduled_meetings,huduma.normal_user,1,1,1,0
+huduma_scheduled_meetings_administrator,Huduma Scheduled Meetings Administrator,model_huduma_scheduled_meetings,huduma.huduma_administrator,1,1,1,1
+huduma_scheduled_calls_portal_user,Huduma Scheduled Calls Portal User,model_huduma_scheduled_calls,huduma.portal_user,1,1,0,0
+huduma_scheduled_calls_normal_user,Huduma Scheduled Calls Normal User,model_huduma_scheduled_calls,huduma.normal_user,1,1,1,0
+huduma_scheduled_calls_administrator,Huduma Scheduled Calls Administrator,model_huduma_scheduled_calls,huduma.huduma_administrator,1,1,1,1

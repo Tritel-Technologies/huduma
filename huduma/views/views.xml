@@ -217,7 +217,7 @@
 									<field name = 'case_resolution'/>
 								</group>
 							</page>
-							<page string = 'Process Map'>
+							<!-- <page string = 'Process Map'>
 								<field name = 'process_map_progress_ids'>
 									<tree colors="green:state=='done';blue:state=='pending';black:state=='open'">
 										<field name = 'sequence'/>
@@ -231,7 +231,7 @@
 										<field name = 'days_to_resolution'/>
 									</tree>
 								</field>
-							</page>
+							</page> -->
 							<page string = 'Comments'>
 								<field name = 'comment_ids'>
 									<tree default_order='date'>
@@ -384,7 +384,7 @@
 					<field name = 'department_id'/>
 					<field name="case_type" string="Nature"/>
 					<field name = 'tag_ids' string = 'Tag'/>
-					<filter string="My" domain="[|('assigned_to','=',uid),('opened_by','=',uid)]" name="my_huduma_cases_filter"/>
+					<filter string="My" domain="['|',('assigned_to','=',uid),('opened_by','=',uid)]" name="my_huduma_cases_filter"/>
 
 					<filter icon="terp-go-month" string="Opened this Month" name="opened_this_month" domain="[('opened_date','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),('opened_date','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]" help="Current Month"/>
 					
