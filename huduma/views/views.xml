@@ -38,13 +38,13 @@
 		<menuitem name = 'Stages' id = 'huduma_stages' parent = 'huduma_configuration_main_menu' action = 'huduma_stages_action' sequence = '10'/>
 
 		<record model = 'ir.actions.act_window' id = 'huduma_departments_action'>
-			<field name = 'name'>Divisions</field>
+			<field name = 'name'>Areas</field>
 			<field name = 'res_model'>huduma.department</field>
 			<field name = 'view_type'>form</field>
 			<field name = 'view_mode'>kanban,tree,form</field>
 		</record>
 
-		<menuitem name = 'Divisions' id = 'huduma_departments' parent = 'huduma_cases_main_menu' action = 'huduma_departments_action' sequence = '5'/>
+		<menuitem name = 'Areas' id = 'huduma_departments' parent = 'huduma_cases_main_menu' action = 'huduma_departments_action' sequence = '5'/>
 
 		<record model = 'ir.actions.act_window' id = 'huduma_tags_action'>
 			<field name = 'name'>Tags</field>
